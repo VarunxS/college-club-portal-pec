@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Management Dashboard | PEC Clubs</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons (optional but recommended) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <header>
+    <!-- Existing header/nav -->
+  </header>
+  <main>
+    <section class="dashboard-container">
+      <div class="dashboard-header">
+        <h1>Event Management Dashboard</h1>
+        <a href="add-event.html" class="button"><i class="fas fa-plus"></i> Add New Event</a>
+      </div>
+
+      <!-- Dashboard Stats -->
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+          <div>
+            <div class="stat-number">3</div>
+            <div class="stat-label">Upcoming Events</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-users"></i></div>
+          <div>
+            <div class="stat-number">132</div>
+            <div class="stat-label">Total Attendees</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-history"></i></div>
+          <div>
+            <div class="stat-number">1</div>
+            <div class="stat-label">Past Event</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters/Search -->
+      <div class="dashboard-filters">
+        <input type="search" placeholder="Search events..." aria-label="Search events">
+        <select>
+          <option>All Statuses</option>
+          <option>Upcoming</option>
+          <option>Ongoing</option>
+          <option>Past</option>
+        </select>
+      </div>
+
+      <!-- Events Table -->
+      <div class="dashboard-table-container">
+        <table class="dashboard-table">
+          <thead>
+            <tr>
+              <th>Event Title</th>
+              <th>Club</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Guest Lecture: Future of AI</td>
+              <td>Tech Club</td>
+              <td>Oct 26, 2023</td>
+              <td>Auditorium A</td>
+              <td><span class="badge badge-upcoming">Upcoming</span></td>
+              <td class="actions">
+                <a href="add-event.html?edit=1" class="button small"><i class="fas fa-edit"></i> Edit</a>
+                <button class="button small warning"><i class="fas fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Web Dev Workshop: React Basics</td>
+              <td>Tech Club</td>
+              <td>Nov 10, 2023</td>
+              <td>Comp Lab 3</td>
+              <td><span class="badge badge-upcoming">Upcoming</span></td>
+              <td class="actions">
+                <a href="add-event.html?edit=2" class="button small"><i class="fas fa-edit"></i> Edit</a>
+                <button class="button small warning"><i class="fas fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Photography Exhibition</td>
+              <td>Arts Society</td>
+              <td>Nov 5-7, 2023</td>
+              <td>SU Hall</td>
+              <td><span class="badge badge-past">Past</span></td>
+              <td class="actions">
+                <a href="add-event.html?edit=3" class="button small"><i class="fas fa-edit"></i> Edit</a>
+                <button class="button small warning"><i class="fas fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <!-- Existing footer -->
+  </footer>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>College Events Calendar | PEC Clubs</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    .events-hero {
+      background: linear-gradient(120deg, #003366 70%, #617f93 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 0 40px 0;
+      margin-bottom: 40px;
+    }
+    .events-hero h1 {
+      font-size: 2.7rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .events-hero p {
+      font-size: 1.15rem;
+      color: #e0e9f7;
+      margin-bottom: 0;
+    }
+    .events-filters {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+    .events-filters select, .events-filters input[type="search"] {
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: 1px solid #dee2e6;
+      font-size: 1rem;
+      background: #fff;
+      color: #003366;
+      min-width: 160px;
+    }
+    .event-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 32px;
+    }
+    .event-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 3px 16px rgba(0,51,102,0.09);
+      padding: 32px 26px 26px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: box-shadow 0.3s, transform 0.3s;
+      animation: fadeInUp 0.5s ease;
+    }
+    .event-card:hover {
+      box-shadow: 0 8px 28px rgba(0,51,102,0.16);
+      transform: translateY(-3px) scale(1.025);
+    }
+    .event-date {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      background: #FFC107;
+      color: #003366;
+      font-weight: bold;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(255,193,7,0.10);
+    }
+    .event-card h3 {
+      margin-bottom: 12px;
+      color: #003366;
+      font-size: 1.22rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .event-card .event-meta {
+      font-size: 0.98rem;
+      color: #617f93;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .event-card .event-meta i {
+      color: #FFC107;
+      margin-right: 5px;
+    }
+    .event-card .event-desc {
+      color: #232f39;
+      margin-bottom: 18px;
+      font-size: 1.03rem;
+      min-height: 44px;
+    }
+    .event-card .button {
+      align-self: flex-start;
+      margin-top: 6px;
+    }
+    @media (max-width: 700px) {
+      .events-hero h1 { font-size: 2rem; }
+      .event-cards-grid { grid-template-columns: 1fr; }
+      .events-filters { flex-direction: column; gap: 12px; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const clubFilter = document.getElementById('clubFilter');
+      const searchInput = document.getElementById('searchEvents');
+      const cards = document.querySelectorAll('.event-card');
+      function filterEvents() {
+        const clubVal = clubFilter.value;
+        const searchVal = searchInput.value.toLowerCase();
+        cards.forEach(card => {
+          const club = card.dataset.club;
+          const title = card.querySelector('h3').textContent.toLowerCase();
+          const desc = card.querySelector('.event-desc').textContent.toLowerCase();
+          if (
+            (clubVal === 'All' || club === clubVal) &&
+            (title.includes(searchVal) || desc.includes(searchVal))
+          ) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+      clubFilter.addEventListener('change', filterEvents);
+      searchInput.addEventListener('input', filterEvents);
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <!-- Your existing header/nav here -->
+  </header>
+  <main>
+    <section class="events-hero">
+      <h1><i class="fas fa-calendar-alt"></i> College Events Calendar</h1>
+      <p>Discover workshops, exhibitions, and guest lectures. Filter by club or search to find your next event!</p>
+    </section>
+    <section class="container">
+      <div class="events-filters">
+        <label for="clubFilter"><i class="fas fa-users"></i> Club:</label>
+        <select id="clubFilter">
+          <option value="All">All Clubs</option>
+          <option value="Tech Club">Tech Club</option>
+          <option value="Arts Society">Arts Society</option>
+        </select>
+        <input type="search" id="searchEvents" placeholder="Search events...">
+      </div>
+      <div class="event-cards-grid">
+        <div class="event-card" data-club="Tech Club">
+          <span class="event-date">Oct 26, 2023</span>
+          <h3><i class="fas fa-microchip"></i> Guest Lecture: Future of AI</h3>
+          <div class="event-meta">
+            <span><i class="fas fa-users"></i> Tech Club</span>
+            <span><i class="fas fa-clock"></i> 6:00 PM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Auditorium A</span>
+          </div>
+          <div class="event-desc">
+            Join us for an insightful talk by Dr. Alex Turing on the future impact of AI.
+          </div>
+          <a href="event-detail.html" class="button small">More Details</a>
+        </div>
+        <div class="event-card" data-club="Arts Society">
+          <span class="event-date">Nov 5-7, 2023</span>
+          <h3><i class="fas fa-camera-retro"></i> Annual Photography Exhibition</h3>
+          <div class="event-meta">
+            <span><i class="fas fa-users"></i> Arts Society</span>
+            <span><i class="fas fa-clock"></i> All Day</span>
+            <span><i class="fas fa-map-marker-alt"></i> Student Union Hall</span>
+          </div>
+          <div class="event-desc">
+            Experience stunning visuals from talented student photographers. Open to all!
+          </div>
+          <a href="event-detail.html" class="button small">More Details</a>
+        </div>
+        <div class="event-card" data-club="Tech Club">
+          <span class="event-date">Nov 10, 2023</span>
+          <h3><i class="fab fa-react"></i> Web Dev Workshop: React Basics</h3>
+          <div class="event-meta">
+            <span><i class="fas fa-users"></i> Tech Club</span>
+            <span><i class="fas fa-clock"></i> 4:00 PM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Comp Lab 3</span>
+          </div>
+          <div class="event-desc">
+            Hands-on session on React fundamentals. Bring your laptops!
+          </div>
+          <a href="event-detail.html" class="button small">More Details</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <!-- Your existing footer here -->
+  </footer>
+</body>
+</html>

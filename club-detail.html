@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tech Club | Club Details</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons (optional but recommended) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      background: var(--bg-color);
+    }
+    .club-hero {
+      background: linear-gradient(120deg, #003366 70%, #617f93 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 0 40px 0;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .club-hero .club-logo {
+      width: 120px; height: 120px; border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      margin-bottom: 18px;
+    }
+    .club-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .club-hero .club-tagline {
+      font-size: 1.15rem;
+      color: #e0e9f7;
+      margin-bottom: 18px;
+    }
+    .club-hero .club-contact {
+      font-size: 1rem;
+      color: #ffc107;
+      margin-bottom: 8px;
+    }
+    .club-hero .join-btn {
+      background: #ffc107;
+      color: #003366;
+      font-weight: 700;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      margin-top: 14px;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 4px 10px rgba(255,193,7,0.12);
+    }
+    .club-hero .join-btn:hover {
+      background: #fff;
+      color: #003366;
+    }
+
+    .club-details-container {
+      max-width: 980px;
+      margin: 0 auto 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 0 12px;
+    }
+    .club-section-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,51,102,0.07);
+      padding: 32px 28px;
+      margin-bottom: 0;
+      animation: fadeInUp 0.5s;
+    }
+    .club-section-card h2 {
+      color: #003366;
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+    .club-section-card h2 i {
+      color: #ffc107;
+      font-size: 1.25em;
+    }
+    .events-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .event-item {
+      padding: 18px 0;
+      border-bottom: 1px solid #e9ecef;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .event-item:last-child { border-bottom: none; }
+    .event-item .event-title {
+      font-weight: 600;
+      color: #003366;
+      font-size: 1.08rem;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .event-item .event-meta {
+      font-size: 0.97rem;
+      color: #617f93;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .event-item .event-meta i { color: #ffc107; margin-right: 3px; }
+    .event-item.past .event-title {
+      text-decoration: line-through;
+      color: #b0b0b0;
+    }
+    .announcement {
+      background: #f8f9fa;
+      color: #003366;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .discussion-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .discussion-item {
+      border-bottom: 1px solid #e9ecef;
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .discussion-item:last-child { border-bottom: none; }
+    .discussion-title {
+      font-weight: 600;
+      color: #003366;
+      font-size: 1.06rem;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .discussion-meta {
+      font-size: 0.94rem;
+      color: #617f93;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .attendance-list {
+      margin: 0; padding: 0; list-style: none;
+    }
+    .attendance-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #e9ecef;
+      color: #003366;
+      font-size: 1.01rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .attendance-list li:last-child { border-bottom: none; }
+    .feedback-form textarea {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #dee2e6;
+      padding: 12px;
+      margin-bottom: 12px;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    .feedback-form button {
+      background: #003366;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .feedback-form button:hover { background: #ffc107; color: #003366; }
+    @media (max-width: 700px) {
+      .club-hero { padding: 38px 0 24px 0; }
+      .club-hero h1 { font-size: 1.4rem; }
+      .club-details-container { padding: 0 2vw; }
+      .club-section-card { padding: 18px 7vw; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Your main navigation/header here -->
+  </header>
+  <main>
+    <!-- HERO SECTION -->
+    <section class="club-hero">
+      <img src="images/tech-club-logo.png" alt="Tech Club Logo" class="club-logo">
+      <h1>Tech Club</h1>
+      <div class="club-tagline">Fostering a vibrant tech community on campus</div>
+      <div class="club-contact">
+        <i class="fas fa-user-tie"></i> Faculty Advisor: Dr. Ada Lovelace &nbsp; | &nbsp;
+        <i class="fas fa-envelope"></i> <a href="mailto:tech.club@yourcollege.edu" style="color:#ffc107;">tech.club@yourcollege.edu</a>
+      </div>
+      <button class="join-btn"><i class="fas fa-user-plus"></i> Join Club</button>
+    </section>
+
+    <div class="club-details-container">
+
+      <!-- ABOUT SECTION -->
+      <section class="club-section-card" id="about">
+        <h2><i class="fas fa-info-circle"></i> About Us</h2>
+        <p>
+          Welcome to the 

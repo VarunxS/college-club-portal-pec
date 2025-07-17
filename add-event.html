@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create New Event | PEC Clubs</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Optionally include Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <header>
+    <!-- Your existing header/nav here -->
+  </header>
+  <main>
+    <section class="form-container">
+      <h2><i class="fas fa-calendar-plus"></i> Create New Event</h2>
+      <form>
+        <div class="form-grid">
+          <div>
+            <label for="event-title">Event Title<span style="color: #dc3545;">*</span></label>
+            <input type="text" id="event-title" name="event-title" required placeholder="Enter event name">
+          </div>
+          <div>
+            <label for="club">Hosting Club<span style="color: #dc3545;">*</span></label>
+            <select id="club" name="club" required>
+              <option value="">-- Select Club --</option>
+              <option>Tech Club</option>
+              <option>Arts Society</option>
+              <option>Debate Club</option>
+              <option>Environmental Club</option>
+            </select>
+          </div>
+          <div>
+            <label for="location">Location<span style="color: #dc3545;">*</span></label>
+            <input type="text" id="location" name="location" required placeholder="e.g. Auditorium A">
+          </div>
+          <div>
+            <label for="date">Date<span style="color: #dc3545;">*</span></label>
+            <input type="date" id="date" name="date" required>
+          </div>
+          <div>
+            <label for="time">Time</label>
+            <input type="time" id="time" name="time">
+          </div>
+          <div>
+            <label for="event-type">Event Type</label>
+            <select id="event-type" name="event-type">
+              <option>Seminar</option>
+              <option>Workshop</option>
+              <option>Exhibition</option>
+              <option>Competition</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="full-width">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4" placeholder="Briefly describe the event"></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <a href="dashboard.html" class="button-secondary">Cancel</a>
+          <button type="submit" class="button"><i class="fas fa-check"></i> Create Event</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <!-- Your existing footer here -->
+  </footer>
+</body>
+</html>

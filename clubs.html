@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubs & Societies - College Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-area">
+                <!-- Optional Logo -->
+                <a href="index.html"><img src="se photos/pec.jpg" alt="PEC Logo"></a>
+                <h1>
+                    <a href="index.html">PEC Club Portal</a>
+                    <!-- Optional Subtitle -->
+                    <!-- <span>Punjab Engineering College</span> -->
+                </h1>
+            </div>
+            <nav id="primary-navigation">
+                <ul>
+                    <li><a href="index.html" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a></li>
+                    <li><a href="clubs.html" class="<%= currentPath === '/clubs' ? 'active' : '' %>">Clubs</a></li>
+                    <li><a href="events.html" class="<%= currentPath === '/events' ? 'active' : '' %>">Events</a></li>
+                    <!-- Conditional Link (concept): Use class 'admin-only' -->
+                    <li class="admin-only"><a href="dashboard.html" class="<%= currentPath === '/dashboard' ? 'active' : '' %>">Dashboard</a></li>
+                    <!-- Conditional Login/Logout -->
+                    <li class="auth-link"><a href="login.html" class="button-nav">Login</a></li>
+                    <!-- <li class="logout-link"><a href="/logout" class="button-nav">Logout</a></li> -->
+                </ul>
+            </nav>
+            <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+                <span class="sr-only">Menu</span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    <main>
+        <div class="container page-title">
+             <h2>Discover Clubs & Societies</h2>
+             <input type="search" placeholder="Search clubs..." class="search-bar">
+        </div>
+
+        <section class="all-clubs">
+            <div class="container">
+                <div class="club-list full-list">
+                    <!-- Club Card 1 -->
+                    <div class="club-item card">
+                        <img src="se photos/robotics.png" alt="Club Logo" class="club-logo-small">
+                        <h4>Tech Club</h4>
+                        <p>Exploring the latest in technology and innovation. Coding, AI, robotics, and more!</p>
+                        <a href="club-detail.html" class="button">View Details</a>
+                    </div>
+                    <!-- Club Card 2 -->
+                    <div class="club-item card">
+                        <img src="se photos/apc.png" alt="Club Logo" class="club-logo-small">
+                        <h4>Arts Society</h4>
+                        <p>Celebrating creativity through various art forms like painting, sculpture, and photography.</p>
+                        <a href="club-detail.html" class="button">View Details</a>
+                    </div>
+                    <!-- Club Card 3 -->
+                     <div class="club-item card">
+                        <img src="se photos/scc.png" alt="Club Logo" class="club-logo-small">
+                        <h4>Debate Club</h4>
+                        <p>Engage in stimulating discussions and hone your public speaking skills.</p>
+                        <a href="club-detail.html" class="button">View Details</a>
+                    </div>
+                     <!-- Club Card 4 -->
+                     <div class="club-item card">
+                         <img src="se photos/nss.png" alt="Club Logo" class="club-logo-small">
+                        <h4>Environmental Club</h4>
+                        <p>Promoting sustainability and environmental awareness on campus.</p>
+                        <a href="club-detail.html" class="button">View Details</a>
+                    </div>
+                    <!-- Add more club cards -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <%= new Date().getFullYear() %> Punjab Engineering College (Deemed to be University), Chandigarh. All Rights Reserved.</p>
+            <!-- Add relevant footer links if needed -->
+            <!-- <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p> -->
+        </div>
+    </footer>
+    <script> /* Add mobile nav JS here */ </script>
+</body>
+<div class="club-list" id="clubList">
+    <!-- Dynamically populated -->
+  </div>
+  
+  <script>
+    fetch('/api/clubs')
+      .then(response => response.json())
+      .then(clubs => {
+        const container = document.getElementById('clubList');
+        clubs.forEach(club => {
+          container.innerHTML += `
+            <div class="card club-item">
+              <h4>${club.name}</h4>
+              <p>${club.description}</p>
+              <a href="/club-detail.html?id=${club._id}" class="button small">
+                View Details
+              </a>
+            </div>
+          `;
+        });
+      });
+  </script>
+  
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>PEC Clubs & Societies Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="logo-area">
+
+        <img src="se photos/pec.jpg" alt="PEC Logo" />
+        <h1>PEC Clubs <span>& Societies</span></h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="clubs.html">Clubs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="login.html" class="button-nav">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <h2>Welcome to the Hub for Clubs & Societies!</h2>
+        <p>
+          Discover events, join vibrant communities, and make the most of your campus life.<br>
+          Connect, learn, and lead with PEC's clubs and societies.
+        </p>
+        <a href="#clubs" class="button">Explore Clubs</a>
+      </div>
+    </section>
+
+
+    <section class="featured-events">
+      <div class="container">
+        <h3 class="section-title">Upcoming Events</h3>
+        <div class="event-list">
+ 
+          <div class="card event-item">
+            <h4>Guest Lecture: Future of AI</h4>
+            <p><strong>Club:</strong> Tech Club</p>
+            <p><strong>Date:</strong> Oct 26, 2023, 6:00 PM</p>
+            <p><strong>Location:</strong> Auditorium A</p>
+            <a href="events.html" class="button small">Details</a>
+          </div>
+          
+          <div class="card event-item">
+            <h4>Annual Photography Exhibition</h4>
+            <p><strong>Club:</strong> Arts Society</p>
+            <p><strong>Date:</strong> Nov 5-7, 2023</p>
+            <p><strong>Location:</strong> Student Union Hall</p>
+            <a href="events.html" class="button small">Details</a>
+          </div>
+          
+          <div class="card event-item">
+            <h4>Web Dev Workshop: React Basics</h4>
+            <p><strong>Club:</strong> Tech Club</p>
+            <p><strong>Date:</strong> Nov 10, 2023, 4:00 PM</p>
+            <p><strong>Location:</strong> Comp Lab 3</p>
+            <a href="events.html" class="button small">Details</a>
+          </div>
+        </div>
+        <a href="events.html" class="view-all-link">View All Events &rarr;</a>
+      </div>
+    </section>
+
+    <!-- FEATURED CLUBS -->
+    <section class="featured-clubs" id="clubs">
+      <div class="container">
+        <h3 class="section-title">Featured Clubs</h3>
+        <div class="club-list">
+          <!-- Club Card 1 -->
+          <div class="card club-item">
+            <img src="se photos/robotics.png" alt="Tech Club Logo" class="club-logo-small" />
+            <h4>Tech Club</h4>
+            <p>Exploring the latest in technology and innovation.</p>
+            <a href="club-detail.html" class="button small">Visit Club</a>
+          </div>
+          <!-- Club Card 2 -->
+          <div class="card club-item">
+            <img src="se photos/apc.png" alt="Arts Society Logo" class="club-logo-small" />
+            <h4>Arts Society</h4>
+            <p>Celebrating creativity through various art forms.</p>
+            <a href="club-detail.html" class="button small">Visit Club</a>
+          </div>
+          <!-- Club Card 3 -->
+          <div class="card club-item">
+            <img src="se photos/drams.png" alt="Debate Club Logo" class="club-logo-small" />
+            <h4>Debate Club</h4>
+            <p>Engage in stimulating discussions and hone your public speaking skills.</p>
+            <a href="club-detail.html" class="button small">Visit Club</a>
+          </div>
+          <!-- Club Card 4 -->
+          <div class="card club-item">
+            <img src="se photos/nss.png" alt="Environmental Club Logo" class="club-logo-small" />
+            <h4>Environmental Club</h4>
+            <p>Promoting sustainability and environmental awareness on campus.</p>
+            <a href="club-detail.html" class="button small">Visit Club</a>
+          </div>
+        </div>
+        <a href="clubs.html" class="view-all-link">View All Clubs &rarr;</a>
+      </div>
+    </section>
+  </main>
+/Users/varunsingla/PERSONAL/college club portal SE/se photos/drams.png
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 PEC Clubs & Societies. All rights reserved.</p>
+      <p>
+        <a href="mailto:clubs@pec.edu">Contact Us</a> |
+        <a href="#">About</a>
+      </p>
+    </div>
+  </footer>
+</body>
+<ul id="clubList"></ul>
+<script>
+fetch('http://localhost:5000/api/clubs')
+  .then(res => res.json())
+  .then(clubs => {
+    document.getElementById('clubList').innerHTML = clubs.map(club => `
+      <li>
+        <img src="${club.logo ? '/' + club.logo : 'default.png'}" width="60">
+        <strong>${club.name}</strong><br>
+        ${club.description}
+      </li>
+    `).join('');
+  });
+</script>
+
+</html>
